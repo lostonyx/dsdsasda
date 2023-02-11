@@ -1,0 +1,78 @@
+{% extends 'layouts/profile.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block slot %}
+
+    <div class="offset-container">
+        <div class="watcher">
+            <div class="show-offset">
+                <h1>Atualizar Dados</h1>
+                <h2>Mantenha sempre os seus dados atualizados.</h2>
+            </div>
+        </div>
+
+        <div class="offset-content" type="classic" pageSync="index">
+
+            <div>
+                <div class="card" type="form" x-data>
+                    <form method="post" action="/form">
+                        <input type="hidden" name="function" value="profile_update">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Nome</span>
+
+                                        <input 
+                                            type="text" 
+                                            name="name" 
+                                            {% if user_info.name %}value="{{ user_info.name }}"{% endif %}>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Sobrenome</span>
+
+                                        <input
+                                            type="text" 
+                                            name="surname" 
+                                            {% if user_info.name %}value="{{ user_info.surname }}"{% endif %}>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Email</span>
+
+                                        <input 
+                                            type="email" 
+                                            name="email" 
+                                            {% if user_info.name %}value="{{ user_info.email }}"{% endif %} 
+                                            required>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-footer range-right">
+                            <button type="submit">
+                                <span>Salvar</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

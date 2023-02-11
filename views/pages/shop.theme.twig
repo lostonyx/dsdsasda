@@ -1,0 +1,60 @@
+{% extends 'layouts/shop.twig' %}
+
+{% block title %}{{ parent() }} - Tema{% endblock %}
+
+{% block styles %}
+    .settings-danger {
+        color: #B91C1C !important;
+
+        &:hover {
+            border-left-color: #DC2626 !important;
+        }
+
+        &:before {
+            background-color: rgba(#EF4444, 0.2) !important;
+        }
+    }
+
+    svg {
+        width: 20px;
+        stroke-width: 0 !important;
+
+        path {
+            fill: #fff;
+        }
+    }
+
+    .nuxt-active-danger {
+        background-color: #DC2626 !important;
+        color: #fff !important;
+        box-shadow: none !important;
+    }
+{% endblock %}
+
+{% block slot %}
+
+    <div class="row longer" mode="gms-mobile-lesser">
+        <div class="col-md-2" style="padding-right: 0;">
+            <menu class="sidelong" type="classic">
+                <div class="buttons">
+                    <li {% if subpage == 'theme.home' %}class="nuxt-link-exact-active"{% endif %}>
+                        <a href="/service/shop/{{ shop.id }}/theme">
+                            Tema
+                        </a>
+                    </li>
+
+                    <li {% if subpage == 'theme.info' %}class="nuxt-link-exact-active"{% endif %}>
+                        <a href="/service/shop/{{ shop.id }}/theme/info">
+                            Informações
+                        </a>
+                    </li>
+                </div>
+            </menu>
+        </div>
+
+        <div class="col-md-10">
+            {% block subslot %}{% endblock %}
+        </div>
+    </div>
+
+{% endblock %}

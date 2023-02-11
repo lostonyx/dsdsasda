@@ -1,0 +1,247 @@
+{% extends 'pages/shop.theme.twig' %}
+
+{% block title %}{{ parent() }} - Informações{% endblock %}
+
+{% block scripts %}
+{{ parent() }}
+<script src="//cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+<script>
+CKEDITOR.replace('tos');
+CKEDITOR.replace('loja');
+</script>
+{% endblock %}
+
+{% block subslot %}
+
+    <div class="offset-container">
+        <div class="watcher">
+            <div class="show-offset">
+                <h1>Atualizar informações</h1>
+                <h2>Atualize as informações da sua loja para colocar o texto que preferir.</h2>
+            </div>
+        </div>
+
+        <div class="offset-content" type="classic" pageSync="index">
+
+            <div>
+                <div class="card" type="form" x-data>
+                    <form method="post" action="/form">
+                        <input type="hidden" name="function" value="shop_theme_update_info">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Nome do servidor</span>
+
+                                        <input 
+                                            type="text" 
+                                            name="buybutton"
+                                            value="{{ config.theme.buybutton }}">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">IP do servidor</span>
+
+                                        <input 
+                                            type="text" 
+                                            name="topbuy_name"
+                                            value="{{ config.theme.buytop }}">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Descrição</span>
+
+                                        <input 
+                                            type="text" 
+                                            name="logo"
+                                            value="{{ config.theme.logo }}">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Texto do footer (final da página)</span>
+
+                                        <input 
+                                            type="text" 
+                                            name="logo"
+                                            value="{{ config.theme.logo }}">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Texto loja</span>
+                                    </label>
+                                    <textarea 
+                                        type="text"
+                                        id="loja"
+                                        name="logo"
+                                        value="{{ config.theme.info_shop }}">
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Termos de uso</span>
+                                    </label>
+                                    <textarea 
+                                        type="text"
+                                        id="tos"
+                                        name="logo"
+                                        value="{{ config.theme.info_shop }}">
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Ativar Top Compradores</span>
+
+                                        <input
+                                            type="checkbox" 
+                                            name="primary"
+                                            value="{{ config.theme.primary }}" style="height: 20px;">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Nome</span>
+
+                                        <select id="themeversion" name="themeversion" class="form-control">
+                                            <option value="v1">Versão 1 (2018)</option>
+                                            <option value="v2" selected="selected">Versão 2 (2020)</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Cor primária</span>
+
+                                        <input style="padding: 8px 8px;"
+                                            type="color" 
+                                            name="primary"
+                                            value="{{ config.theme.primary }}">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Cor secundária</span>
+
+                                        <input style="padding: 8px 8px;"
+                                            type="color" 
+                                            name="secondary"
+                                            value="{{ config.theme.secondary }}">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Logo</span>
+
+                                        <input 
+                                            type="text" 
+                                            name="logo"
+                                            value="{{ config.theme.logo }}">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Imagem de fundo (topo)</span>
+
+                                        <input 
+                                            type="text" 
+                                            name="background"
+                                            value="{{ config.theme.background }}">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Nome do botão de compra</span>
+
+                                        <input 
+                                            type="text" 
+                                            name="buy_name"
+                                            value="{{ config.theme.buybutton }}">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Nome do "Top compradores"</span>
+
+                                        <input 
+                                            type="text" 
+                                            name="topbuy_name"
+                                            value="{{ config.theme.buytop }}">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-footer range-right">
+                            <button type="submit">
+                                <span>Salvar</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

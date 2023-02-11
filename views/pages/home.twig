@@ -1,0 +1,176 @@
+{% extends 'layouts/base.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block page %}
+
+    <div class="inside" area="home">
+        <div class="watcher">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="show-message">
+                        <h1>
+                            Olá, <strong>{% if name %}{{ name|capitalize }}{% else %}Usuário{% endif %}</strong>!
+                        </h1>
+                        
+                        <h2>Bem-vindo ao painel de controle da CubeShop.</h2>
+                    </div>
+                </div>
+
+                <div class="col-md-5 range-right">
+                    <div class="show-tags">
+                        <div class="content">
+                            <span 
+                                id="all"
+                                class="listing-model-selected"></span>
+
+                            <span 
+                                id="active"
+                                class="listing2-model-selected"></span>
+
+                            <span 
+                                id="creating"
+                                class="listing2-model-selected"></span>
+
+                            <span 
+                                id="overdue"
+                                class="listing2-model-selected"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="listing home" type="service">
+            <div class="header">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-3" style="padding-left: 25px;">
+                            <span id="name">Serviço</span>
+                        </div>
+                        <div class="col-md-2">
+                            <span id="name">Domínio</span>
+                        </div>
+                        <div class="col-md-2">
+                            <span id="name">Estado</span>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+
+                {% if shops %}
+                {% for shop in shops %}
+                {% if shop.suspended == 1 %}
+                <div class="card" status="overdue">
+                {% else %}
+                <div class="card">
+                {% endif %}
+                    <div class="row">
+                        <div class="col-md-1 range-center image">
+                            <li id="image">
+                                <img src="/assets/svg/packages/minecraft/grama.png">
+                            </li>
+                        </div>
+                        <div class="col-md-2 range-left desc" style="padding-left: 0;">
+                            <li id="description">
+                                <span id="name" class="bold">#{{ shop.id }} - Plano 1</span>
+                                <small>{% if shop.created_at %}Criação: {{ shop.created_at|date("d/m/Y") }}{% else %}Sem data de criação{% endif %}</small>
+                            </li>
+                        </div>
+                        <div class="col-md-2 range-left copy">
+                            <li id="copy" class="btn" data-clipboard-text="127.0.0.1" data-clipboard-response="Domínio copiado para a área de transferência." tooltip="true" tooltip-other="regular" tooltip-type="bottom-left">
+                                <em class="tooltip-text">clique para copiar o domínio.</em>
+                                <span>{% if shop.domain %}{{ shop.domain }}{% endif %}</span>
+                            </li>
+                        </div>
+                        <div class="col-md-2 range-left status">
+                            <li id="status">
+                                {% if shop.suspended == 1 %}
+                                <span id="prime">VENCIDO</span>
+                                <small><em>Serviço vencido</em></small>
+                                {% elseif shop.locked == 1 %}
+                                <span id="prime">Criando</span>
+                                <small><em>Em preparação</em></small>
+                                {% else %}
+                                <span id="prime">{% if shop.expire_at %}{{ shop.expire_at|date("d/m/Y") }}{% else %}00/00/0000{% endif %}</span>
+                                <small><em>Próximo vencimento</em></small>
+                                {% endif %}
+                            </li>
+                        </div>
+                        <div class="col-md-3 range-right func">
+                            <li id="function">
+                                {% if shop.suspended == 1 %}
+                                <div class="status">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 172 172">
+                                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                                            <g>
+                                                <path d="M157.66667,86c0,39.57433 -32.09233,71.66667 -71.66667,71.66667c-39.57433,0 -71.66667,-32.09233 -71.66667,-71.66667c0,-39.57433 32.09233,-71.66667 71.66667,-71.66667c39.57433,0 71.66667,32.09233 71.66667,71.66667z" fill="#cfd8dc"></path>
+                                                <path d="M75.25,86c0,-5.934 4.816,-10.75 10.75,-10.75c5.934,0 10.75,4.816 10.75,10.75c0,5.934 -4.816,10.75 -10.75,10.75c-5.934,0 -10.75,-4.816 -10.75,-10.75zM121.83333,96.75c5.934,0 10.75,-4.816 10.75,-10.75c0,-5.934 -4.816,-10.75 -10.75,-10.75c-5.934,0 -10.75,4.816 -10.75,10.75c0,5.934 4.816,10.75 10.75,10.75zM50.16667,96.75c5.934,0 10.75,-4.816 10.75,-10.75c0,-5.934 -4.816,-10.75 -10.75,-10.75c-5.934,0 -10.75,4.816 -10.75,10.75c0,5.934 4.816,10.75 10.75,10.75z" fill="#455a64"></path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </div>
+                                {% elseif shop.locked == 1 %}
+                                <div class="status">
+                                    <div class="sk-chase" style="width: 25px; height:25px">
+                                        <div class="sk-chase-dot"></div>
+                                        <div class="sk-chase-dot"></div>
+                                        <div class="sk-chase-dot"></div>
+                                        <div class="sk-chase-dot"></div>
+                                        <div class="sk-chase-dot"></div>
+                                        <div class="sk-chase-dot"></div>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="status">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 172 172">
+                                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                                            <g>
+                                                <path d="M157.66667,86c0,39.57433 -32.09233,71.66667 -71.66667,71.66667c-39.57433,0 -71.66667,-32.09233 -71.66667,-71.66667c0,-39.57433 32.09233,-71.66667 71.66667,-71.66667c39.57433,0 71.66667,32.09233 71.66667,71.66667z" fill="#4caf50"></path>
+                                                <path d="M118.25,86c0,17.81633 -14.43367,32.25 -32.25,32.25c-17.81633,0 -32.25,-14.43367 -32.25,-32.25c0,-17.81633 14.43367,-32.25 32.25,-32.25c17.81633,0 32.25,14.43367 32.25,32.25z" fill="#c8e6c9"></path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <a class="edit" id="service-update-name" service="3" name="Servidor - Lobby" target="_self" rel="noopener noreferrer" tooltip="true" tooltip-other="regular" tooltip-type="bottom-left">
+                                    <em class="tooltip-text">Clique para Alterar o Nome.</em>
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                    </svg>
+                                </a>
+                                <a class="manage" href="/service/shop/{{ shop.id }}" target="_self" rel="noopener noreferrer" tooltip="true" tooltip-other="regular" tooltip-type="bottom-left">
+                                    <em class="tooltip-text">Clique para ir as Configurações.</em>
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </a>
+                                {% endif %}
+                            </li>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+<style lang="scss" scoped>
+    .no-services-box {
+        padding: 15px;
+        text-align: left;
+        background-color: rgba(var(--red), 1);
+        border-radius: 15px;
+        color: #fff;
+        width: 30%;
+    }
+</style>
+
+{% endblock %}

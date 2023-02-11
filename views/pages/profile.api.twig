@@ -1,0 +1,93 @@
+{% extends 'layouts/profile.twig' %}
+
+{% block title %}API{% endblock %}
+
+{% block slot %}
+
+    <div class="offset-container">
+        <div class="watcher">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="show-offset">
+                        <h1>Atualizar API</h1>
+                        <h2>Atualize as informações para conexão com a sua API.</h2>
+                        <h2><strong>Atenção:</strong> Ao desativar a API, o token será removido e os IPs serão removidos.</h2>
+                        <h2>Não é possível alterar o token manualmente, para gerar um novo é necessário desativar e ativar novamente.</h2>
+                    </div>
+                </div>
+
+                <div class="col-md-4 range-right">
+                    <div class="show-button-function" mode="lesser">
+                        <li>
+                            <a href="#">
+                                <button id="add">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+
+                                    <span id="name">Documentação</span>
+                                </button>
+                            </a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="offset-content" type="classic" pageSync="index">
+
+            <div>
+                <div class="card" type="form" x-data>
+                    <form method="post" action="/form">
+                        <input type="hidden" name="function" value="profile_update_api">
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">API Status</span>
+
+                                        <select name="status">
+                                            <option value="on"{% if user_info.token %} selected{% endif %}>Ativado</option>
+                                            <option value="off"{% if not user_info.token %} selected{% endif %}>Desativado</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">Token</span>
+
+                                        <input type="text" name="token" {% if user_info.token %}value="{{ user_info.token }}"{% endif %} disabled>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class="gms-inputer">
+                                    <label class="classic">
+                                        <span id="name">IPs Autorizados</span>
+
+                                        <input type="text" name="ips" {% if user_info.name %}value="{{ user_info.token_ips }}"{% endif %}>
+                                    </label>
+                                    <small>Separe os IPs por vírgula e sem espaço.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-footer range-right">
+                            <button type="submit">
+                                <span>Salvar</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

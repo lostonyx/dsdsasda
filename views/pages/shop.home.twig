@@ -1,0 +1,78 @@
+{% extends 'layouts/shop.twig' %}
+
+{% block title %}{{ parent() }} - Home{% endblock %}
+
+{% block styles %}
+{{ parent() }}
+<style>
+    .card {
+        padding: 15px 20px !important;
+    }
+
+    .password-view {
+        text-security: disc !important;
+        -mox-text-security: disc !important;
+        -webkit-text-security: disc !important;
+        font-family: text-security-disc !important;
+    }
+</style>
+{% endblock %}
+
+{% block slot %}
+
+    <div class="info-chart">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="_info-chart-card">
+                    <div class="_info-chart-card-header">
+                        <span id="name">Info 1</span>
+                    </div>
+                    <div class="_info-chart-card-content">
+                        <span id="result">INFO 1</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="_info-chart-card">
+                    <div class="_info-chart-card-header">
+                        <span id="name">Info 2</span>
+                    </div>
+                    <div class="_info-chart-card-content">
+                        <span id="result">INFO 2</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="_info-chart-card">
+                    <div class="_info-chart-card-header">
+                        <span id="name">Info 3</span>
+                    </div>
+                    <div class="_info-chart-card-content">
+                        <span id="result">INFO 3</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="_info-chart-card">
+                    <div class="_info-chart-card-header">
+                        <span id="name">Info 4</span>
+                    </div>
+
+                    <div class="_info-chart-card-content">
+                            <span id="result">
+                                R$ 0,00
+                            </span>
+
+                        <small class="prime">
+                            00/00/0000
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

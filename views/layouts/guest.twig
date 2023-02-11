@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html class="theme-light" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="/assets/png/logo/lost-cloud-white.png">
+
+        <title>CubeShop - {% block title %}{% endblock %}</title>
+        
+        <!-- Styles -->
+        <link rel="stylesheet" href="/assets/css/app.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
+        <style type="text/css">
+            html, body {
+                height: 100% !important;
+            }
+
+            .container-global, .allWidth, .inside {
+                height: 100%;
+            }
+        </style>
+
+        <!-- Scripts -->
+        <script src="/assets/js/app.js" defer></script>
+        <script src="//code.jquery.com/jquery-3.6.0.min.js" defer></script>
+        <script src="/assets/js/form.js" defer></script>
+        <script src="//cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    </head>
+    <body type="function">
+        <div class="container-global" style="height: 100%;">
+            <div class="allWidth" style="height: 100%;">
+                <div class="inside" style="height: 100%;" type="page" area="login">
+                    {% block slot %}{% endblock %}
+
+                    <footer>
+                        <div class="brand">
+                            <div class="soon-max">
+                                <img 
+                                    class="animated flipInX slow" 
+                                    src="/assets/png/logo/logo text white.png" 
+                                    />
+                            </div>
+
+                            <div class="more">
+                                <span id="copyright">
+                                    Copyright © <strong><a href="https://CubeShop.com.br">CubeShop</a></strong> 2018-{{ "now"|date('Y') }}.
+                                </span>
+
+                                <span id="developer">
+                                    Frontend produzido com ❤️ por <a class="redirect" href="https://gcsantos.me" target="_self" rel="noopener noreferrer">geraldo moehra :-)</a> em Minas Gerais, 🇧🇷
+                                </span>
+                            </div>
+
+                            <div class="phrase">
+                                <p>"A fim de ganhar algo, deve sacrificar um outro de valor equivalente"</p>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

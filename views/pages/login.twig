@@ -1,0 +1,78 @@
+{% extends 'layouts/guest.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block slot %}
+
+    <div class="card">
+        <div class="header">
+            <img 
+                class="animated flipInX slow" 
+                alt="Soon" 
+                src="/assets/png/logo/lost-cloud.png" 
+                title="Soon - LostHost">
+        </div>
+
+        <div class="content animated fadeIn">
+            <strong>Faça login para continuar</strong>
+
+            <form id="account-login" method="POST" action="/form">
+                <input type="hidden" name="function" value="login">
+
+                <div class="inputer">
+                    <label class="gms-input-group">
+                        <div class="gms-read">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+
+                        <input 
+                            type="email" 
+                            name="email" 
+                            placeholder="Endereço de Email">
+                    </label>
+                </div>
+
+                <div class="inputer">
+                    <label class="gms-input-group">
+                        <div class="gms-read">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                        </div>
+
+                        <input 
+                            type="password"
+                            name="password" 
+                            placeholder="Senha">
+                    </label>
+                </div>
+
+                <div class="row" style="align-items: center;">
+                    <!--<div class="col-md-6">
+                        <a class="access" href="#">
+                            Esqueceu a senha?
+                        </a>
+                    </div>-->
+                    <div class="col-md-6">
+                        <a class="access" href="/user/register">
+                            Não possui um login?
+                        </a>
+                    </div>
+
+                    <div class="col-md-6 range-right">
+                        <div class="form-footer">
+                            <button type="submit" style="width: 100%;">
+                                <span style="width: 100%;">
+                                    Entrar
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

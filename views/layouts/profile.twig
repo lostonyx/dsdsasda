@@ -1,0 +1,58 @@
+{% extends 'layouts/base.twig' %}
+
+{% block title %}Cloud{% endblock %}
+
+{% block page %}
+
+    <div class="inside home" area="profile">
+        <div class="watcher">
+            <div class="show-message">
+                <div class="row">
+                    <div class="col-md-3 range-center">
+                        <div class="image" style="width: 70px; height: 70px; border-radius: 50%; border: 3px solid var(--dye-border-classic);">
+                            <img src="https://source.boringavatars.com/beam/512/Potato" style="width: 100%; height: 100%; border-radius: 50%; display: block;"/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9">
+                        <h1>
+                            Olá <strong>{% if user_info.name %}{{ user_info.name|capitalize }}{% else %}Usuário{% endif %}</strong>!
+                        </h1>
+                        
+                        <h2>Obrigado por ser nosso cliente desde {% if user_info.created_at %}{{ user_info.created_at|date("d/m/Y") }}{% else %}00/00/0000{% endif %}!</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="viewing" type="profile" x-data="profilePage" x-init="init">
+            <menu class="higher" type="classic">
+                <div class="buttons">
+                    <div class="row longer">
+                        <li {% if page is not defined or page == 'profile.home' %}class="nuxt-link-exact-active"{% endif %}>
+                            <a href="/user/profile">
+                                Início
+                            </a>
+                        </li>
+
+
+                        <li {% if page == 'profile.password' %}class="nuxt-link-exact-active"{% endif %}>
+                            <a href="/user/profile/password">
+                                Senha
+                            </a>
+                        </li>
+
+                        <li{% if page == 'profile.api' %} class="nuxt-link-exact-active"{% endif %}>
+                            <a href="/user/profile/api">
+                                API
+                            </a>
+                        </li>
+                    </div>
+                </div>
+            </menu>
+
+            {% block slot %}{% endblock %}
+        </div>
+    </div>
+
+{% endblock %}

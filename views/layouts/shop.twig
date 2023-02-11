@@ -1,0 +1,114 @@
+{% extends 'layouts/base.twig' %}
+
+{% block title %}Cloud{% endblock %}
+
+{% block page %}
+
+    <div class="inside virutal-server-private" area="service">
+        <div class="watcher">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="show-message">
+                        <div class="row">
+                            <div class="col-md-3 range-center">
+                                <div class="image">
+                                    <img src="/assets/png/services/cloud.png">
+                                </div>
+
+                                <div class="status-service" type="{% if shop.status == 1 %}running{% else %}offline{% endif %}">
+                                    <div class="path-base animated slow infinite" :class="gms_pulse"></div>
+
+                                    <div class="path-boll"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-9">
+                                <h1>
+                                    <strong x-text="store.cloud.hostname">
+                                        {{ shop.domain }}
+                                    </strong>
+
+                                </h1>
+
+                                <h2><strong>Status:</strong> {% if shop.locked %}Bloqueada{% else %}{% if shop.status == 1 %}Ligada{% else %}Desligada{% endif %}{% endif %}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8 range-right">
+                    <div class="show-button-function">
+                        <div class="row">
+                            <div class="col-md-12 range-left">
+                                <li>
+                                    <form method="POST" action="/form">
+                                        <input type="hidden" name="function" value="cloud_start">
+                                        <input type="hidden" name="id" value="{{ service.id }}">
+
+                                        <button id="turn-on"{% if service.status == 1 %} disabled{% endif %}>
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+
+                                            <span id="name">Iniciar</span>
+                                        </button>
+                                    </form>
+                                </li>
+
+                                <li>
+                                    <form method="POST" action="/form">
+                                        <input type="hidden" name="function" value="cloud_reboot">
+                                        <input type="hidden" name="id" value="{{ service.id }}">
+
+                                        <button id="restart"{% if service.status == 0 %} disabled{% endif %}>
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+
+                                            <span id="name">Reiniciar</span>
+                                        </button>
+                                    </form>
+                                </li>
+
+                                <li>
+                                    <form method="POST" action="/form">
+                                        <input type="hidden" name="function" value="cloud_stop">
+                                        <input type="hidden" name="id" value="{{ service.id }}">
+
+                                        <button id="turn-off"{% if service.status == 0 %} disabled{% endif %}>
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path></svg>
+
+                                            <span id="name">Desligar</span>
+                                        </button>
+                                    </form>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="viewing" type="service">
+            <menu class="higher" type="classic">
+                <div class="buttons">
+                    <div class="row longer">
+                        <div class="col-md-8">
+                            <li {% if page is not defined or page == 'home' %}class="nuxt-link-exact-active"{% endif %}>
+                                <a href="/service/shop/{{ shop.id }}">
+                                    Início
+                                </a>
+                            </li>
+
+                            <li {% if page  == 'theme' %}class="nuxt-link-exact-active"{% endif %}>
+                                <a href="/service/shop/{{ shop.id }}/theme">
+                                    Tema
+                                </a>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+            </menu>
+
+            {% block slot %}{% endblock %}
+
+        </div>
+    </div>
+
+{% endblock %}
